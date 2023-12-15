@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CartServices {
-  void postItem(
-      {required String size,
-      required String token,
-      required String id,
-      required String name}) async {
+  void postItem({
+    required String size,
+    required String token,
+    required String id,
+  }) async {
     String url = 'https://chicwardrobe-znz5.onrender.com/cart/$id';
     var data = jsonEncode({
-      '(size, ': size,
+      'size': size,
     });
     final response = await http.post(
       Uri.parse(url),
@@ -20,6 +20,7 @@ class CartServices {
       },
       body: data,
     );
-    print(response.statusCode);
+    print(token);
+    print(response.body);
   }
 }

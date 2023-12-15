@@ -18,10 +18,10 @@ class AddToCartButtonInBottomSheet extends StatelessWidget {
         onPressed: () {
           print(product.id);
           CartServices().postItem(
-              size: 'm',
-              token: token,
-              id: product.id!,
-              name: product.prodctName);
+            size: 'S',
+            token: token,
+            id: product.id!,
+          );
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(

@@ -9,7 +9,7 @@ class SplashBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3), () {
-      GoRouter.of(context).push('/HomeView');
+      GoRouter.of(context).push('/LoginView');
     });
     return const Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
