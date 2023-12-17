@@ -16,12 +16,7 @@ class AddToCartButtonInBottomSheet extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: ElevatedButton(
         onPressed: () {
-          print(product.id);
-          CartServices().postItem(
-            size: 'S',
-            token: token,
-            id: product.id!,
-          );
+          addToCartIsPressed(token, context);
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(
@@ -42,5 +37,27 @@ class AddToCartButtonInBottomSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void addToCartIsPressed(String token, BuildContext context) {
+    CartServices()
+        .postItem(
+      size: 'S',
+      token: token,
+      id: product.id!,
+    )
+        .then((success) {
+      if (success) {
+        const snackBar = SnackBar(
+          content: Text('Product added to cart successfully'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        const snackBar = SnackBar(
+          content: Text('faild'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
   }
 }

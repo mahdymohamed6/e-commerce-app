@@ -23,7 +23,7 @@ class ImagePriceName extends StatelessWidget {
               fit: BoxFit.fill,
             )),
         const SizedBox(
-          width: 20,
+          width: 12,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

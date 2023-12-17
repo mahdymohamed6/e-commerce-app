@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CartServices {
-  void postItem({
+  Future<bool> postItem({
     required String size,
     required String token,
     required String id,
@@ -22,5 +22,15 @@ class CartServices {
     );
     print(token);
     print(response.body);
+    if (response.statusCode == 201) {
+      print('sucssses');
+
+      // print(
+      //     "${userData.role}   and    ${userData.token}   and     ${userData.userId}");
+      return true;
+    } else {
+      print('error ${response.statusCode}');
+      return false;
+    }
   }
 }
