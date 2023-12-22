@@ -20,7 +20,6 @@ class RemoteDataSource {
   }
 }
 
-
 // masculine
 // essentials
 // formal

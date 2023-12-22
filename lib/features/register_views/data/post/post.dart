@@ -52,17 +52,15 @@ class Post {
   }
 }
 
+// Future<void> register(
+//     {required String name,
+//     required String pass,
+//     required String email}) async {
+//   var data = jsonEncode({'name': name, 'email': email, 'password': pass});
+//   final response = await dio.post(url,
+//       data: data,
+//       options: Options(
+//           headers: {'Content-Type': 'application/json; charset=UTF-8'}));
 
-
-  // Future<void> register(
-  //     {required String name,
-  //     required String pass,
-  //     required String email}) async {
-  //   var data = jsonEncode({'name': name, 'email': email, 'password': pass});
-  //   final response = await dio.post(url,
-  //       data: data,
-  //       options: Options(
-  //           headers: {'Content-Type': 'application/json; charset=UTF-8'}));
-
-  //   print(response.data);
-  // }
+//   print(response.data);
+// }

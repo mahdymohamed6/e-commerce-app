@@ -18,7 +18,7 @@ class ClotheItemGridViewBlocBuilder extends StatelessWidget {
       create: (context) {
         final collectionCubit = CollectionCubit(RemoteDataSource(dio: Dio()));
         collectionCubit.getCollection(
-            collection:collectionName); // Call the getCollection() method
+            collection: collectionName); // Call the getCollection() method
         return collectionCubit;
       },
       child: BlocBuilder<CollectionCubit, CollectionState>(

@@ -33,4 +33,28 @@ class CartServices {
       return false;
     }
   }
+
+  void getCartItems({
+    required String token,
+  }) async {
+    String url = 'https://chicwardrobe-znz5.onrender.com/cart';
+
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    print(token);
+
+    if (response.statusCode == 200) {
+      print('sucssses');
+      print(response.body);
+      // print(
+      //     "${userData.role}   and    ${userData.token}   and     ${userData.userId}");
+    } else {
+      print('error ${response.statusCode}');
+    }
+  }
 }

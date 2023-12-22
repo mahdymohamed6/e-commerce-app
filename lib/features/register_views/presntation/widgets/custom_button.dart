@@ -4,7 +4,8 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    required this.horzintalPadding, this.onPressed,
+    required this.horzintalPadding,
+    this.onPressed,
   });
   final String text;
   final double horzintalPadding;

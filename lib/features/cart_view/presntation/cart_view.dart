@@ -32,7 +32,15 @@ class CartView extends StatelessWidget {
           ),
         ),
       ),
-      body: const CartViewBody(),
+      body: ListView.builder(
+        itemCount: 4,
+        itemBuilder: ((context, index) {
+          return const Padding(
+            padding: EdgeInsets.only(bottom: 14),
+            child: CartViewBody(),
+          );
+        }),
+      ),
     );
   }
 }
