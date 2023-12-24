@@ -1,10 +1,8 @@
-import 'package:the_basic_look/features/women_view/domain/entities/cart_item_entity.dart';
-
-class CartItemModel extends CartItemEntity {
+class Product {
   String? id;
   String? name;
   int? price;
-  List<String>? size;
+  List<dynamic>? size;
   String? description;
   String? gender;
   String? collectionSeason;
@@ -14,7 +12,7 @@ class CartItemModel extends CartItemEntity {
   DateTime? updatedAt;
   int? v;
 
-  CartItemModel({
+  Product({
     this.id,
     this.name,
     this.price,
@@ -27,17 +25,18 @@ class CartItemModel extends CartItemEntity {
     this.createdAt,
     this.updatedAt,
     this.v,
-  }) : super(name: name!, price: price!);
+  });
 
-  factory CartItemModel.fromJson(Map<String, dynamic> json) => CartItemModel(
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json['_id'] as String?,
         name: json['name'] as String?,
         price: json['price'] as int?,
-        size: json['size'] as List<String>?,
+        size: json['size'] as List<dynamic>?,
         description: json['description'] as String?,
         gender: json['gender'] as String?,
         collectionSeason: json['collectionSeason'] as String?,
-        image: json['image'] as String?,
+        image:
+            'https://chicwardrobe-znz5.onrender.com/${json['image'] as String?}',
         creator: json['creator'] as String?,
         createdAt: json['createdAt'] == null
             ? null

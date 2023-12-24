@@ -26,7 +26,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: '/CartView',
-        builder: (context, state) => const CartView(),
+        builder: (context, state) => const CartView(
+          cartModel: [],
+        ),
       ),
     ],
   );
