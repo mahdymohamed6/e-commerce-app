@@ -6,9 +6,10 @@ import 'package:the_basic_look/features/women_view/data/models/cart_item_model2/
 import 'package:the_basic_look/features/women_view/data/services/cart_services.dart';
 
 class CartView extends StatefulWidget {
-  const CartView({Key? key, required this.cartModel}) : super(key: key);
+  const CartView({Key? key, required this.cartModel, this.totalPrice})
+      : super(key: key);
   final List<CartModel> cartModel;
-
+  final int? totalPrice;
   @override
   State<CartView> createState() => _CartViewState();
 }
@@ -19,8 +20,6 @@ class _CartViewState extends State<CartView> {
   @override
   void initState() {
     super.initState();
-
-    loadCart();
   }
 
   Future<void> loadCart() async {
@@ -164,14 +163,7 @@ class _CartViewState extends State<CartView> {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
-          } else if (!snapshot.hasData) {
-            return ListView.builder(
-              itemCount: widget.cartModel.length,
-              itemBuilder: (context, index) {
-                return buildCartItem(widget.cartModel[index]);
-              },
-            );
-          } else if (snapshot.data!.isEmpty) {
+          } else if (snapshot.data == null || snapshot.data!.isEmpty) {
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               child: const Align(
@@ -184,7 +176,50 @@ class _CartViewState extends State<CartView> {
             );
           } else {
             return Column(
-              children: snapshot.data!.map(buildCartItem).toList(),
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return buildCartItem(snapshot.data![index]);
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  child: Container(
+                    height: 60,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: FutureBuilder(
+                      future: CartServices().getCartPrice(token: token),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Center(
+                            child: Text(
+                              'price:${snapshot.data}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ],
             );
           }
         },

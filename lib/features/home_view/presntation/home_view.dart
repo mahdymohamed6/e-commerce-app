@@ -29,12 +29,15 @@ class HomeView extends StatelessWidget {
               onTap: () async {
                 List<CartModel> cartModel =
                     await CartServices().getCartItems(token: token);
+                int? totalPrice =
+                    await CartServices().getCartPrice(token: token);
                 // ignore: use_build_context_synchronously
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => CartView(
                         cartModel: cartModel,
+                        totalPrice: totalPrice,
                       ),
                     ));
               },

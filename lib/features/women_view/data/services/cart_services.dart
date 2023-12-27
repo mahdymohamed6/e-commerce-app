@@ -96,4 +96,22 @@ class CartServices {
       print('error ${response.statusCode}');
     }
   }
+
+  Future<int?> getCartPrice({required String token}) async {
+    final url = Uri.parse('https://chicwardrobe-znz5.onrender.com/cart');
+
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = jsonDecode(response.body);
+      final int? totalPrice = responseData['totalPrice'];
+      print(totalPrice);
+      return totalPrice;
+    } else {
+      print(response.body);
+      print(response.statusCode);
+      return 0;
+    }
+  }
 }
