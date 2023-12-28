@@ -14,6 +14,7 @@ class SignUp extends StatelessWidget {
       TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var scaffoldMessenger = ScaffoldMessenger.of(context);
     return Scaffold(
       backgroundColor: Color.fromARGB(221, 40, 39, 39),
       body: Column(
@@ -57,13 +58,21 @@ class SignUp extends StatelessWidget {
             height: 24,
           ),
           CustomButton(
-            onPressed: () {
+            onPressed: () async {
               // if (passwordController == repeatPasswordController &&
               //     nameController == surnameController) {
-              Post().register(
+              Future<String> message = Post().register(
                   name: nameController.text,
                   pass: passwordController.text,
                   email: emailController.text);
+
+              message.then((value) {
+                scaffoldMessenger.showSnackBar(
+                  SnackBar(
+                    content: Text(value),
+                  ),
+                );
+              });
             },
             text: 'SIGN UP',
             horzintalPadding: 58,

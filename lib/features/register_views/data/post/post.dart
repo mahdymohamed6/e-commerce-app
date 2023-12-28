@@ -4,7 +4,7 @@ import 'package:the_basic_look/core/utils/app_storge.dart';
 import 'package:the_basic_look/features/register_views/data/models/user_data_model';
 
 class Post {
-  Future<void> register(
+  Future<String> register(
       {required String name,
       required String pass,
       required String email}) async {
@@ -19,8 +19,9 @@ class Post {
     if (response.statusCode == 201) {
       print('sucssses');
       print(jsonData);
+      return (response.body);
     } else {
-      print('error ${response.statusCode}');
+      return (response.body);
     }
   }
 
